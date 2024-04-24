@@ -3,8 +3,18 @@ import random
 
 
 class HotelRoom:
+    """
+    Class of hotel rooms
+    """
 
     def __init__(self, number, tp, capacity, comfort, food=0):
+        """
+        Initializing class of hotel rooms.
+        number - room number (1-30)
+        tp - room type
+        capacity - number of people that can live in
+        comfort - room comfort type
+        """
         self.number = number
         self.tp = tp
         self.capacity = int(capacity)
@@ -15,6 +25,11 @@ class HotelRoom:
 
     @staticmethod
     def cost(sort, comfort):
+        """
+        Method returns room cost for one person.
+        sort - room type
+        comfort - room comfort type
+        """
         types = {
             ru_local.ONE_PERSON: 2900,
             ru_local.TWO_PERSONS: 2300,
@@ -33,6 +48,9 @@ class HotelRoom:
 
     @staticmethod
     def dietary(food_cost):
+        """
+        Method returns cost of meals for one person.
+        """
         diets = {
             "half_board": 1000.0,
             "breakfast": 280.0,
@@ -43,11 +61,17 @@ class HotelRoom:
                 return price
 
     def booking(self, busy_date: str, days):
+        """
+        Method books room for a certain date.
+        """
         date = int(busy_date[:2])
         self.busy.append([date, date + days - 1])
 
 
 def calculate_profits(is_sell, missed_profit, profit, num_people, max_money, hotel, booking_flag):
+    """
+    Method returns profit margin and missed profit of a hotel from one person.
+    """
     for apartment in hotel:
         busy_flag = False
         coefficient = 0.7 if is_sell == True else 1
